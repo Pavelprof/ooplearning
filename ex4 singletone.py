@@ -3,7 +3,7 @@ class DataBase:
 
     def __new__(cls, *args, **kwargs):
         if cls.__instance is None:
-            cls.__instance = super().__new__()
+            cls.__instance = super().__new__(cls)
 
         return cls.__instance
 
@@ -29,5 +29,8 @@ class DataBase:
 
 db = DataBase('fufa', 'rgr343', 8080)
 db2 = DataBase('fufaaaa', 'rgr343333', 8010)
-Print('db', id(db))
-Print('db2', id(db2))
+print('db', id(db))
+print('db2', id(db2))
+
+db.connect()
+db2.connect()
