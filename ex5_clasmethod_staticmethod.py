@@ -15,6 +15,12 @@ class Vector:
     def get_coords(self):
         return self.x, self.y
 
+    @staticmethod
+    def norm2(x, y):
+        return x*x + y*y
+
 v = Vector(11,7)
 res = Vector.get_coords(v)
 print(res)
+
+print(Vector.norm2(3,4))
