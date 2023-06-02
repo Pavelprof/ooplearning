@@ -6,11 +6,11 @@ class Vector:
     def validate(cls, arg):
         return cls.MIN_COORD <= arg <= cls.MAX_COORD
 
-    def __init__(self, a, b):
+    def __init__(self, x, y):
         self.x = self.y = 0
-        if self.validate(a) and self.validate(b):
-            self.x = a
-            self.y = b
+        if self.validate(x) and self.validate(y):
+            self.x = x
+            self.y = y
 
     def get_coords(self):
         return self.x, self.y
@@ -19,8 +19,4 @@ class Vector:
     def norm2(x, y):
         return x*x + y*y
 
-v = Vector(11,7)
-res = Vector.get_coords(v)
-print(res)
-
-print(Vector.norm2(3,4))
+print(Vector.norm2(4,7))
