@@ -5,12 +5,10 @@ class Person:
 
     def __init__(self, fio, old, ps, weight):
         self.verify_fio(fio)
-        self.verify_old(old)
-        self.verify_weight(weight)
-        self.verify_ps(ps)
+
         self.__fio = fio.split()
-        self.__old = old
-        self.__passport = ps
+        self.old = old
+        self.passport = ps
         self.weight = weight
 
     @classmethod
@@ -48,5 +46,43 @@ class Person:
         if len(s) != 2 or len(s[0]) != 4 or len(s[1]) !=6:
             raise TypeError('Wrong passport forma')
 
+        for p in s:
+            if not p.isdigit():
+                raise TypeError('Passport should include only digits')
+
+    @property
+    def fio(self):
+        return self.__fio
+
+    @property
+    def old(self):
+        return  self.__old
+
+    @old.setter
+    def old(self, old):
+        self.verify_old(old)
+        self.__old = old
+
+    @property
+    def weight(self):
+        return  self.__weight
+
+    @weight.setter
+    def weight(self, w):
+        self.verify_weight(w)
+        self.__weight = w
+
+    @property
+    def passport(self):
+        return  self.__passport
+
+    @passport.setter
+    def passport(self, ps):
+        self.verify_ps(ps)
+        self.__passport = ps
 
 p = Person('ВАсилукп Павеле Ленавмвваи', 33, '3234 234543', 80)
+print(p.__dict__)
+p.old = 50
+p.passport = '8230 000000'
+print(p.__dict__)
