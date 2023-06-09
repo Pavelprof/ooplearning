@@ -1,3 +1,10 @@
+class ReadIntX:
+    def __set_name__(self, owner, name):
+        self.name = '_x'
+
+    def __get__(self, instance, owner):
+        return getattr(instance, self.name)
+
 class Integer:
 
     @classmethod
@@ -22,12 +29,15 @@ class Point3D:
     x = Integer()
     y = Integer()
     z = Integer()
+    xr = ReadIntX()
+
     def __init__(self, x, y, z):
         self.x = x
         self.y = y
         self.z = z
 
 
-
+print(Point3D.__dict__)
 p = Point3D(1,2,3)
 print(p.__dict__, p.z)
+print(p.xr)
