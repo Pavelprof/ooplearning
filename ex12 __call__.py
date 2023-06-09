@@ -1,20 +1,18 @@
-class Counter:
-    def __init__(self):
+class StripChars:
+    def __init__(self, chars):
         self.__counter = 0
+        self.__chars = chars
 
-    def __call__(self, step = 1, *args, **kwargs):
-        print('__call__')
-        self.__counter += step
-        return self.__counter
+    def __call__(self, *args, **kwargs):
+        if not isinstance(args[0], str):
+            raise TypeError('Argument should be string')
+
+        return args[0].strip(self.__chars)
 
     def get_counter(self):
         return self.__counter
 
-c = Counter()
-c1 = Counter()
-c1()
-c(10)
-c(2)
-res = c1(-5)
-res1 = c()
-print(res, res1)
+
+s1 = StripChars('?:!.; ')
+res = s1(' !Hello world!;')
+print(res)
