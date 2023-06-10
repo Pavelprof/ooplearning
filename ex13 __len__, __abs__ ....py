@@ -1,12 +1,13 @@
-class Cat:
-    def __init__(self, name):
-        self.name = name
+class Point:
+    def __init__(self, *args):
+        self.__coords = args
 
-    def __repr__(self):
-        return f'{self.__class__}:{self.name}'
+    def __len__(self):
+        return len(self.__coords)
 
-    def __str__(self):
-        return self.name
+    def __abs__(self):
+        return list(map(abs, self.__coords))
 
-cat = Cat('Sema')
-print(cat)
+p = Point(-1,2,-7)
+print(len(p))
+print(abs(p))
