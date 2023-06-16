@@ -17,10 +17,13 @@ class Person:
 person = Person("John", 25)
 person.display_info()
 
-# In this example, the Person class encapsulates the attributes name and age along with the display_info method. The attributes are accessed and modified through the class methods, providing control and encapsulation of the data.
+# In this example, the Person class encapsulates the attributes name and age along with the display_info method.
+# The attributes are accessed and modified through the class methods, providing control and encapsulation of the data.
 #
 # Inheritance:
-# Inheritance allows creating a new class (derived class) from an existing class (base class). The derived class inherits the attributes and methods of the base class, allowing code reuse and promoting the concept of hierarchy.
+# Inheritance allows creating a new class (derived class) from an existing class (base class).
+# The derived class inherits the attributes and methods of the base class, allowing code reuse and promoting
+# the concept of hierarchy.
 # Example:
 
 class Animal:
@@ -40,36 +43,49 @@ animal.speak()
 dog = Dog("Tommy")
 dog.speak()
 
-# In this example, the Animal class serves as the base class, and the Dog class is derived from it. The Dog class inherits the name attribute and the speak method from the Animal class. By overriding the speak method in the Dog class, we achieve polymorphism.
+# In this example, the Animal class serves as the base class, and the Dog class is derived from it.
+# The Dog class inherits the name attribute and the speak method from the Animal class.
+# By overriding the speak method in the Dog class, we achieve polymorphism.
 #
 # Polymorphism:
-# Polymorphism allows objects of different classes to be treated as objects of a common base class. It enables different classes to implement the same methods with different behaviors. This principle helps in achieving code flexibility, reusability, and extensibility.
+# Polymorphism allows objects of different classes to be treated as objects of a common base class.
+# It enables different classes to implement the same methods with different behaviors.
+# This principle helps in achieving code flexibility, reusability, and extensibility.
 # Example:
 
-class Shape:
-    def draw(self):
-        raise NotImplementedError("Method not implemented")
+class Geom:
+    def get_pr(self):
+        raise NotImplementedError('The child class should redefine the method get_pr')
 
-class Circle(Shape):
-    def draw(self):
-        print("Drawing a circle")
+class Rectangle(Geom):
+    def __init__(self, w, h):
+        self.w = w
+        self.h = h
 
-class Rectangle(Shape):
-    def draw(self):
-        print("Drawing a rectangle")
+    def get_pr(self):
+        return 2*(self.w + self.h)
 
-def draw_shape(shape):
-    shape.draw()
 
-circle = Circle()
-rectangle = Rectangle()
+class Square(Geom):
+    def __init__(self, a):
+        self.a = a
 
-draw_shape(circle)
-draw_shape(rectangle)
-# In this example, the Shape class defines a method called draw, which is overridden in the Circle and Rectangle classes. The draw_shape function takes an instance of the Shape class as an argument and calls the draw method. This demonstrates polymorphism, as different objects are treated uniformly based on the common interface (draw method).
-#
+#    def get_pr(self):
+#       return 4 * self.a
+
+r1 = Rectangle(1, 2)
+r2 = Rectangle(3, 4)
+sq1 = Square(10)
+sq2 = Square(20)
+
+geom = [r1, r2, sq1, sq2]
+
+for g in geom:
+    print(g.get_pr())
+
 # Abstraction:
-# Abstraction refers to the concept of hiding unnecessary implementation details and exposing only the essential features of an object. It allows creating abstract classes with abstract methods that act as a blueprint for the derived classes.
+# Abstraction refers to the concept of hiding unnecessary implementation details and exposing only the essential features
+# of an object. It allows creating abstract classes with abstract methods that act as a blueprint for the derived classes.
 # Example:
 
 from abc import ABC, abstractmethod
