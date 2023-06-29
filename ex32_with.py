@@ -15,13 +15,25 @@ class DefendedVector:
         return self.__temp
 
     def __exit__(self, exc_type, exc_val, exc_tb):
+        if exc_type is None:
+            self.__v[:] = self.__temp
 
+        return False
 
 v1 = [1, 2, 3]
-v2 = [4, 5]
+v2 = [4, 5, 6]
 
-with DefendedVector(v1) as dv:
-    for i in enumerate(dv):
-        dv[i] += v2[i]
+dvv = DefendedVector(v1)
+dvv._DefendedVector__v[0] = 8
+print(dvv._DefendedVector__v)
+print(v1)
+
+try:
+    with DefendedVector(v1) as dv:
+        for i, a in enumerate(dv):
+            dv[i] += v2[i]
+
+except:
+    print('Error')
 
 print(v1)
