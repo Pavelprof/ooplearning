@@ -1,4 +1,4 @@
-from dataclasses import dataclass, field, InitVar
+from dataclasses import dataclass, field, InitVar, make_dataclass
 from typing import Any
 
 class GoodsMethodsFactory:
@@ -16,7 +16,7 @@ class Goods:
     weight: Any = None
 
     def __post_init__(self):
-        print("Goods: __post_init__")
+        # print("Goods: __post_init__")
         Goods.current_uid += 1
         self.uid = Goods.current_uid
 
@@ -34,13 +34,12 @@ class Book(Goods):
 
     def __post_init__(self):
         super().__post_init__()
-        print("Book: __post_init__")
+        # print("Book: __post_init__")
 
 b = Book(200, 1, 'bookk', 'Jason')
-print(b)
-
+# print(b)
 c = Book(1)
-print(c)
+# print(c)
 
 
 class Car:
@@ -52,4 +51,12 @@ class Car:
     def get_max_speed(self):
         return self.max_speed
 
+CarData = make_dataclass('CarData', [('model', str),
+                                     'max_speed',
+                                     ('price', float, field(default=0))],
+                         namespace={'get_max_speed': lambda self: self.max_speed})
 
+c = CarData("BMW", 256, 10000)
+print(c)
+print(c.get_max_speed())
+print(type(c))
