@@ -3,4 +3,3 @@
 # Liskov substitution Principle (принцып подставновки Барбары Лисков)
 # Interface Segregation Principle (принцып разделения интерфейса)
 # Dependency Inversion Principle (принцып инверсии зависимостей)
-
